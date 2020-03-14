@@ -43,7 +43,6 @@ export default function hiddenNumber(target, host, reset = false) {
 
   for (let d of decompositions) {
     let { results, indexesUsedForResult, operations } = possibleResults(d);
-
     if (!usedFirst) {
       indexesUsedForResult.filter((indexes, i) => {
         const usesFirst = indexes.indexOf(0) >= 0;
