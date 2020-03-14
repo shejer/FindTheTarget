@@ -45,8 +45,9 @@ export default function possibleResults(decomposition) {
       }
     }
   }
-
-  loop(decomposition, 0, 1 * decomposition[0], "", 0);
+  for (let i = 0; i < decomposition.length - 1; i++) {
+    loop(decomposition, i, 1 * decomposition[i], "", 0);
+  }
 
   return { results, indexesUsedForResult, operations };
 }
