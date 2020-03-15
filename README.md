@@ -39,39 +39,37 @@ The whole numbers consist of 1's, 10's, 100's, and 1000's, and again, always in
 Host Number: 15031
 Target number: 397 & 763
 
-Example 1:
+**Example 1:**
 
 Target #  397
 
 Moving left to right'
 
-1. (1+5 = 6)  (0+3=3)  6-3=3
-2. (1+5 = 6)  (0+3=3)  6+3=9
-3. (5+0=5) (3-1+2)   5+2=7
+    1) (1+5 = 6)  (0+3=3)  6-3=3
+    2) (1+5 = 6)  (0+3=3)  6+3=9
+    3) (5+0=5) (3-1+2)   5+2=7
 
 Example using the above Target #  763
 
-1)  (1-5=4) (0+3=3)  4+3=7
-
-2. (1+5=6)  6
-3. (5+0=5) (3-1=2)  5-2=3
+    1)  (1-5=4) (0+3=3)  4+3=7
+    2) (1+5=6)  6
+    3) (5+0=5) (3-1=2)  5-2=3
 
 NOTE: with this example, because we did not use the number 1 in the 3rd equation to find the 3, we would not be able to reintroduce it back into the equation later.
 
-Example 2:
+**Example 2:**
 
 Target #  3085
-
 Host # 51417
 
-1. (5+1=6) (4-1=3)   6-3=3
-2. 5 - (1+4) = 0
-3. (5-1+4) + 4 = 8
-4. (1-4=3) (1+7=8)  3-8=5
+    1) (5+1=6) (4-1=3)   6-3=3
+    2) 5 - (1+4) = 0
+    3) (5-1+4) + 4 = 8
+    4) (1-4=3) (1+7=8)  3-8=5
 
 NOTE: In this example 8-3 =5, but 3-8 also equals 5.  Under normal conditions, 3-8 would be -5, but in this program, there are no negative numbers and the answer is 5.
 
-Example 3:
+**Example 3:**
 
 Target #: 397
 Host Number: 22194
@@ -79,7 +77,7 @@ Host Number: 22194
     1) 2 + (2-1+1) 2+1= 3
     2) (2+1=3) + 94 = 97
 
-Example 4:
+**Example 4:**
 
 Target #: 321
 Host Number: 33303
@@ -87,7 +85,7 @@ Host Number: 33303
     1) (3-3=0) +3 = 3
     2)  (( (3+3=6)-30=24 )) - (0+3=3)=21
 
-Example 5:
+**Example 5:**
 
 Target #: 1822
 Host Number: 12537
@@ -99,7 +97,7 @@ Host Number: 12537
 
 NOT VALID.. in Step 3 the 1 and 2 were not used.. so in Step 4 we reintroduced the 2 back into the equation… therefor not valid.
 
-Example 6:
+**Example 6:**
 
 Target #: 2131
 Host Number: 39422
@@ -112,32 +110,15 @@ After we found 2, we found 9+4 = 13… because the first digit in the Host # (3)
 
 These are but a few examples.  The flow of the equation is always the same.  The trick is identifying the whole numbers, keeping them in order and following the few simple rules as stated.
 
-Thanks for the help,
-
-Derek
 
 These are examples of a positive Target Number. These can be used to test the program once compete.
 
-Target: 419
-Host: 10540
-
-Target: 441
-Host: 10540
-
-441
-10934
-
-518
-10934
-
-325
-6811
-
-333
-10061
-
-596
-5433
-
-517
-11034
+| Target | Host  |
+|--------|-------|
+| 325    | 6811  |
+| 333    | 10061 |
+| 419    | 10540 |
+| 441    | 10540 |
+| 441    | 10934 |
+| 517    | 11034 |
+| 518    | 10934 |
