@@ -8,7 +8,7 @@ function concat(element, array) {
   return array.map(e => [element, ...e]);
 }
 
-export default function decompose(number) {
+function rawDecomposition(number) {
   if (number.length === 0) {
     return [];
   }
@@ -38,4 +38,14 @@ export default function decompose(number) {
     ...concat(number.substr(0, 3), decompose(number.substr(3))),
     ...concat(number.substr(0, 4), decompose(number.substr(4)))
   ];
+}
+
+export default function decompose(number) {
+  const decompositions = rawDecomposition(number);
+  for (let i in decompositions) {
+    decompositions[i] = decompositions[i].map(str =>
+      str.replace(/0+(.+)/, "$1")
+    );
+  }
+  return decompositions;
 }
