@@ -68,7 +68,7 @@ export default function possibleResults(decomposition) {
           ...indexesUsedForResult[j]
         ]);
         operations.push(
-          `${operations[i]} ${operations[j]} (${decomposition[i]} - ${decomposition[j]} = ${sub})`
+          `${operations[i]} ${operations[j]} (${results[i]} - ${results[j]} = ${sub})`
         );
       }
     }
