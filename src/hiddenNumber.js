@@ -31,9 +31,8 @@ export function doesItStartWith(potentialStart, target) {
 }
 
 let usedFirst = false;
-let usedLast = false;
 
-export default function hiddenNumber(target, host, reset = false) {
+export default function hiddenNumber(target, host, usedLast, reset = false) {
   if (reset) {
     usedFirst = false;
     usedLast = false;
@@ -55,26 +54,29 @@ export default function hiddenNumber(target, host, reset = false) {
     usedFirst = true;
 
     for (let r in results) {
+      let usedLastHere = usedLast;
       let { answer, newTarget } = doesItStartWith(results[r], target);
       if (answer) {
-        if (!usedLast) {
-          usedLast =
+        if (!usedLastHere) {
+          usedLastHere =
             indexesUsedForResult[r][indexesUsedForResult[r].length - 1] ===
             d.length - 1;
+          // console.log({ usedLast, d, indexes: indexesUsedForResult[r] });
+          // console.log({
+          //   host,
+          //   step: operations[r],
+          //   potentialStart: results[r],
+          //   target,
+          //   newTarget,
+          //   indexes: indexesUsedForResult[r]
+          // });
         }
-        // console.log({
-        //   host,
-        //   step: operations[r],
-        //   potentialStart: results[r],
-        //   target,
-        //   newTarget,
-        //   indexes: indexesUsedForResult[r]
-        // });
-        if (newTarget === "" && usedLast) {
+
+        if (newTarget === "" && usedLastHere) {
           return { success: true, steps: [operations[r]] };
         }
         let newHost = recontructHost(d, indexesUsedForResult[r]);
-        let { success, steps } = hiddenNumber(newTarget, newHost);
+        let { success, steps } = hiddenNumber(newTarget, newHost, usedLastHere);
         if (success) {
           return { success, steps: [operations[r], ...steps] };
         }

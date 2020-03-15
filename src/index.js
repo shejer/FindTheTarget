@@ -14,7 +14,9 @@ function App() {
   };
 
   const result =
-    state.target && state.host && hiddenNumber(state.target, state.host, true);
+    state.target &&
+    state.host &&
+    hiddenNumber(state.target, state.host, false, true);
   return (
     <div>
       <h1>Find the target</h1>
