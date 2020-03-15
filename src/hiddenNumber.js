@@ -57,7 +57,7 @@ export default function hiddenNumber(target, host, usedLast, reset = false) {
       let usedLastHere = usedLast;
       let { answer, newTarget } = doesItStartWith(results[r], target);
       if (answer) {
-        if (!usedLastHere) {
+        if (!usedLastHere && newTarget === "") {
           usedLastHere =
             indexesUsedForResult[r][indexesUsedForResult[r].length - 1] ===
             d.length - 1;
@@ -77,7 +77,7 @@ export default function hiddenNumber(target, host, usedLast, reset = false) {
         }
         let newHost = recontructHost(d, indexesUsedForResult[r]);
         let { success, steps } = hiddenNumber(newTarget, newHost, usedLastHere);
-        if (success) {
+        if (success && steps.indexOf(operations[r]) < 0) {
           return { success, steps: [operations[r], ...steps] };
         }
       }
