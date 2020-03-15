@@ -5,17 +5,16 @@ export default function possibleResults(decomposition) {
 
   // This loop computes all possible combinations between two elements of decomposition
   for (let i = 0; i < decomposition.length - 1; i++) {
-    for (let j = i + 1; j < decomposition.length; j++) {
-      const add = 1 * decomposition[i] + 1 * decomposition[j];
-      results.push(`${add}`);
-      indexesUsedForResult.push([i, j]);
-      operations.push(`(${decomposition[i]} + ${decomposition[j]} = ${add})`);
+    let j = i + 1;
+    const add = 1 * decomposition[i] + 1 * decomposition[j];
+    results.push(`${add}`);
+    indexesUsedForResult.push([i, j]);
+    operations.push(`(${decomposition[i]} + ${decomposition[j]} = ${add})`);
 
-      const sub = Math.abs(1 * decomposition[i] - 1 * decomposition[j]);
-      results.push(`${sub}`);
-      indexesUsedForResult.push([i, j]);
-      operations.push(`(${decomposition[i]} - ${decomposition[j]} = ${sub})`);
-    }
+    const sub = Math.abs(1 * decomposition[i] - 1 * decomposition[j]);
+    results.push(`${sub}`);
+    indexesUsedForResult.push([i, j]);
+    operations.push(`(${decomposition[i]} - ${decomposition[j]} = ${sub})`);
   }
 
   // At this point results only contain combinations of two elements of decomposition
