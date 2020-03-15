@@ -42,10 +42,7 @@ function rawDecomposition(number) {
 
 export default function decompose(number) {
   const decompositions = rawDecomposition(number);
-  for (let i in decompositions) {
-    decompositions[i] = decompositions[i].map(str =>
-      str.replace(/0+(.+)/, "$1")
-    );
-  }
-  return decompositions;
+  return decompositions.filter(decomposition => {
+    return !decomposition.some(str => /0+(.+)/.test(str));
+  });
 }
