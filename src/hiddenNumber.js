@@ -30,11 +30,8 @@ export function doesItStartWith(potentialStart, target) {
   return { answer, newTarget };
 }
 
-let usedFirst = false;
-
 export default function hiddenNumber(target, host, usedLast, reset = false) {
   if (reset) {
-    usedFirst = false;
     usedLast = false;
   }
 
@@ -42,16 +39,16 @@ export default function hiddenNumber(target, host, usedLast, reset = false) {
 
   for (let d of decompositions) {
     let { results, indexesUsedForResult, operations } = possibleResults(d);
-    if (!usedFirst) {
-      indexesUsedForResult.filter((indexes, i) => {
-        const usesFirst = indexes.indexOf(0) >= 0;
-        if (!usesFirst) {
-          results.splice(i);
-        }
-        return usesFirst;
-      });
+    if (reset) {
+      const toSaveorNotToSave = indexesUsedForResult.map(
+        indexes => indexes.indexOf(0) >= 0
+      );
+      indexesUsedForResult = indexesUsedForResult.filter(
+        (indexes, i) => toSaveorNotToSave[i]
+      );
+      results = results.filter((r, i) => toSaveorNotToSave[i]);
+      operations = operations.filter((o, i) => toSaveorNotToSave[i]);
     }
-    usedFirst = true;
 
     for (let r in results) {
       let usedLastHere = usedLast;
@@ -61,16 +58,16 @@ export default function hiddenNumber(target, host, usedLast, reset = false) {
           usedLastHere =
             indexesUsedForResult[r][indexesUsedForResult[r].length - 1] ===
             d.length - 1;
-          // console.log({ usedLast, d, indexes: indexesUsedForResult[r] });
-          // console.log({
-          //   host,
-          //   step: operations[r],
-          //   potentialStart: results[r],
-          //   target,
-          //   newTarget,
-          //   indexes: indexesUsedForResult[r]
-          // });
         }
+        // console.log({ usedLastHere, d, indexes: indexesUsedForResult[r] });
+        // console.log({
+        //   host,
+        //   step: operations[r],
+        //   potentialStart: results[r],
+        //   target,
+        //   newTarget,
+        //   indexes: indexesUsedForResult[r]
+        // });
 
         if (newTarget === "" && usedLastHere) {
           return { success: true, steps: [operations[r]] };

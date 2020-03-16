@@ -20,10 +20,12 @@ const tests = [
   ["596", "13778"],
   ["321", "18441"],
   ["321", "10628"],
-  ["321", "12247"]
+  ["321", "12247"],
+  ["3085", "13231"],
+  ["850", "6599"]
 ];
 
 tests.forEach(([target, host]) => {
-  let result = hiddenNumber(target, host);
+  let result = hiddenNumber(target, host, false, true);
   console.log({ host, target, ...result });
 });
