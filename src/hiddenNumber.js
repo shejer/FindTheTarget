@@ -70,16 +70,16 @@ export default function hiddenNumber(target, host, usedLast, reset = false) {
         // });
 
         if (newTarget === "" && usedLastHere) {
-          return { success: true, steps: [operations[r]] };
+          return { target, success: true, steps: [operations[r]] };
         }
         let newHost = recontructHost(d, indexesUsedForResult[r]);
         let { success, steps } = hiddenNumber(newTarget, newHost, usedLastHere);
         if (success && steps.indexOf(operations[r]) < 0) {
-          return { success, steps: [operations[r], ...steps] };
+          return { target, success, steps: [operations[r], ...steps] };
         }
       }
     }
   }
 
-  return { success: false, steps: [] };
+  return { target, success: false, steps: [] };
 }

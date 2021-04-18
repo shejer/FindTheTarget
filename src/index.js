@@ -2,9 +2,27 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 //import "./test.js";
 
+import Result from "./Result";
+
 import "./styles.css";
 
 import hiddenNumber from "./hiddenNumber";
+
+const TARGETS_TO_TEST = [
+  "396",
+  "12922",
+  "693",
+  "129225",
+  "69",
+  "22912",
+  "39",
+  "229125",
+  "36",
+  "495",
+  "96",
+  "594",
+  "93"
+];
 
 function App() {
   const [state, setState] = useState({ target: "", host: "" });
@@ -13,14 +31,22 @@ function App() {
     setState({ ...state, [name]: value });
   };
 
-  const result =
-    state.target &&
-    state.host &&
-    hiddenNumber(state.target, state.host, false, true);
+  const results = [];
+  let result;
+
+  if (state.host) {
+    result =
+      state.target && hiddenNumber(state.target, state.host, false, true);
+
+    TARGETS_TO_TEST.forEach(target => {
+      results.push(hiddenNumber(target, state.host, false, true));
+    });
+  }
+
   return (
-    <div>
-      <h1>Find the target</h1>
-      <div>
+    <>
+      <h1>Find The Target</h1>
+      <div className="form">
         <label>
           <span>Target:</span>
           <input
@@ -41,46 +67,16 @@ function App() {
           />
         </label>
         {result && (
-          <div className={`result ${result.success && "SUCCESS"}`}>
-            <span>{result.success ? "SUCCESS" : "FAIL"}</span>
-            {result.success && (
-              <ol>
-                {result.steps.map((step, index) => (
-                  <li key={index}>
-                    <pre>{step}</pre>
-                  </li>
-                ))}
-              </ol>
-            )}
-          </div>
+          <Result key={result.target} result={result} showTarget={false} />
         )}
       </div>
-    </div>
+      <div className="grid">
+        {results.map(result => (
+          <Result key={result.target} result={result} />
+        ))}
+      </div>
+    </>
   );
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
-//
-// console.clear();
-//
-// const tests = [
-//   // ["2131", "39422"],
-//   // ["419", "10540"],
-//   // ["441", "10540"],
-//   // ["441", "10934"],
-//   // ["518", "10934"],
-//   // ["325", "6811"],
-//   // ["333", "10061"],
-//   // ["596", "5433"],
-//   // ["517", "11034"],
-//   // ["5", "12"],
-//   // ["52", "12"],
-//   ["10", "100"],
-//   ["100", "10"]
-//   // ["12", "5"]
-// ];
-//
-// tests.forEach(([target, host]) => {
-//   let result = hiddenNumber(target, host);
-//   console.log({ host, target, result });
-// });
